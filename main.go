@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/igorariza/Go-SaaS/controllers"
+	"github.com/igorariza/Go-SaaS/tree/main/controllers"
 )
 
 func main() {
