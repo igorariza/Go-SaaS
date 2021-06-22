@@ -1,30 +1,35 @@
 package engine
 
-// // Route represents a web handler with optional middlewares.
-// type Route struct {
-// 	// middleware
-// 	WithDB           bool
-// 	Logger           bool
-// 	EnforceRateLimit bool
-// 	AllowCrossOrigin bool
+import (
+	"net/http"
+	"github.com/igorariza/Go-SaaS/model"
+)
 
-// 	// authorization
-// 	MinimumRole model.Roles
+// Route represents a web handler with optional middlewares.
+type Route struct {
+	// middleware
+	WithDB           bool
+	Logger           bool
+	EnforceRateLimit bool
+	AllowCrossOrigin bool
 
-// 	Handler http.Handler
-// }
+	// authorization
+	MinimumRole model.Roles
 
-// // NewError returns a new route that simply Respond with the error and status code.
-// func NewError(err error, statusCode int) *Route {
-// 	return &Route{
-// 		Logger:      true,
-// 		MinimumRole: model.RolePublic,
-// 		Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-// 			Respond(w, r, statusCode, err)
-// 		}),
-// 	}
-// }
+	Handler http.Handler
+}
 
-// func notFound(w http.ResponseWriter) {
-// 	http.Error(w, "not found", http.StatusNotFound)
-// }
+// NewError returns a new route that simply Respond with the error and status code.
+func NewError(err error, statusCode int) *Route {
+	return &Route{
+		Logger:      true,
+		MinimumRole: model.RolePublic,
+		Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			Respond(w, r, statusCode, err)
+		}),
+	}
+}
+
+func notFound(w http.ResponseWriter) {
+	http.Error(w, "not found", http.StatusNotFound)
+}

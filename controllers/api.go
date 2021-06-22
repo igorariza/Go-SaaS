@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"github.com/igorariza/Go-SaaS/tree/main/engine"
+	"github.com/igorariza/Go-SaaS/engine"
 )
 // API is the starting point of our API.
 // Responsible for routing the request to the correct handler
@@ -32,8 +32,7 @@ func (a *API) ServeHTTP(w http.ResponseWriter, r *http.Request){
 func newError(err error, statusCode int) *engine.Route {
 	return &engine.Route{
 	Logger: true,
-	Handler: http.HandlerFunc(func(w http.ResponseWriter, r
-	*http.Request) {
+	Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	engine.Respond(w, r, statusCode, err)
 	}),
 	}

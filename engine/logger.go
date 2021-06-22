@@ -7,8 +7,7 @@ import (
 )
 // Logger middleware that log request information
 func Logger(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r
-	*http.Request) {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 	ctx := context.WithValue(r.Context(),
 	ContextRequestStart, time.Now())
 	next.ServeHTTP(w, r.WithContext(ctx))

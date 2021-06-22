@@ -43,7 +43,9 @@ func Respond(w http.ResponseWriter, r *http.Request, status int, data interface{
 	}
 
 	// write the request ID
+	const ContextRequestID = "user"
 	reqID, ok := r.Context().Value(ContextRequestID).(string)
+
 	if ok {
 		w.Header().Set("X-Request-ID", reqID)
 	}
